@@ -1,4 +1,3 @@
-su - w205
 cd /data
 mkdir /data/ex1files
 mkdir /data/ex1final
@@ -13,6 +12,10 @@ wget https://s3.amazonaws.com/exercise1vb/Measure+Dates.csv
 tail -n +2 /data/ex1files/Measure+Dates.csv > /data/ex1final/measures.csv
 wget https://s3.amazonaws.com/exercise1vb/hvbp_hcahps_05_28_2015.csv
 tail -n +2 /data/ex1files/hvbp_hcahps_05_28_2015.csv > /data/ex1final/responses.csv
+wget https://s3.amazonaws.com/exercise1vb/Readmissions+and+Deaths+-+National.csv
+tail -n +2 /data/ex1files/Readmissions+and+Deaths+-+National.csv > /data/ex1final/readmissionsNat.csv
+wget https://s3.amazonaws.com/exercise1vb/Timely+and+Effective+Care+-+National.csv
+tail -n +2 /data/ex1files/Timely+and+Effective+Care+-+National.csv > /data/ex1final/effective_careNat.csv
 cd /
 hdfs dfs -mkdir /user/w205/hospital_compare
 hdfs dfs -mkdir /user/w205/hospital_compare/effective_care
@@ -20,8 +23,12 @@ hdfs dfs -mkdir /user/w205/hospital_compare/hospital
 hdfs dfs -mkdir /user/w205/hospital_compare/measures
 hdfs dfs -mkdir /user/w205/hospital_compare/readmissions
 hdfs dfs -mkdir /user/w205/hospital_compare/responses
+hdfs dfs -mkdir /user/w205/hospital_compare/readmissionsNat
+hdfs dfs -mkdir /user/w205/hospital_compare/effective_careNat
 hdfs dfs -put /data/ex1final/effective_care.csv /user/w205/hospital_compare/effective_care
 hdfs dfs -put /data/ex1final/hospital.csv /user/w205/hospital_compare/hospital
 hdfs dfs -put /data/ex1final/measures.csv /user/w205/hospital_compare/measures
 hdfs dfs -put /data/ex1final/readmissions.csv /user/w205/hospital_compare/readmissions
 hdfs dfs -put /data/ex1final/responses.csv /user/w205/hospital_compare/responses
+hdfs dfs -put /data/ex1final/readmissionsNat.csv /user/w205/hospital_compare/readmissionsNat
+hdfs dfs -put /data/ex1final/effective_careNat.csv /user/w205/hospital_compare/effective_careNat

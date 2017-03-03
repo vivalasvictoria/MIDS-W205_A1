@@ -1,0 +1,51 @@
+//get all readmission points for provider & measure
+SELECT
+	ProviderId,
+	measureId,
+	Sum(Points) as Points
+FROM
+(
+	SELECT
+		h.ProviderId,
+		h.measureId,
+		CASE
+			WHEN h.ComparedToNational = "Not Available" OR h.ComparedToNational = "Number of Cases Too Small" THEN 0
+			WHEN CAST(h.LowerEstimate AS float) > n.NationalRate THEN 1
+			WHEN CAST(h.HigherEstimate AS float) < n.NationalRate THEN 3
+		ELSE 2 END AS Points,
+		
+		
+	FROM
+	readmissionsH h 
+	LEFT JOIN readmissionsN n ON h.MeasureID = n.MeasureID
+) AS a
+
+GROUP BY
+	ProviderId,
+	measureId
+	
+	
+//get all care points for provider & measure
+SELECT
+	ProviderId,
+	measureId,
+	Sum(Points) as Points
+FROM
+(
+	SELECT
+		h.ProviderId,
+		h.measureId,
+		CASE
+			WHEN h.ComparedToNational = "Not Available" OR h.ComparedToNational = "Number of Cases Too Small" THEN 0
+			WHEN CAST(h.LowerEstimate AS float) > n.NationalRate THEN 1
+			WHEN CAST(h.HigherEstimate AS float) < n.NationalRate THEN 3
+		ELSE 2 END AS Points,		
+		
+	FROM
+	effective_careH h 
+	LEFT JOIN effective_careN n ON h.MeasureID = n.MeasureID
+) AS a
+
+GROUP BY
+	ProviderId,
+	measureId

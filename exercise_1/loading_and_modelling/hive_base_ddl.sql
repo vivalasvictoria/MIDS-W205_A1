@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS readmissions;
 DROP TABLE IF EXISTS responses;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS effective_care                                                                        
-     (providerId int,                                                                                                                
+     (providerId string,                                                                                                                
      hospitalName string,                                                                                                            
      address string,                                                                                                                 
      city string,                                                                                                                    
@@ -31,7 +31,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS effective_care
 
 
 CREATE EXTERNAL TABLE IF NOT EXISTS hospital
-     (providerId int,
+     (providerId string,
      hospitalName string,                                                                                                            
      address string,
      city string,
@@ -66,7 +66,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS measures
      LOCATION '/user/w205/hospital_compare/measures';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS readmissions                                                                          
-     (providerId int,
+     (providerId string,
      hospitalName string,
      address string,
      city string,
@@ -93,7 +93,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS readmissions
      LOCATION '/user/w205/hospital_compare/readmissions';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS responses
-     (providerNumber int,
+     (providerNumber string,
      hospitalName string,
      address string,                                                                                                                 
      city string,
@@ -133,4 +133,40 @@ CREATE EXTERNAL TABLE IF NOT EXISTS responses
      "escapeChar"="\\")
      STORED AS TEXTFILE                                                                                                              
      LOCATION '/user/w205/hospital_compare/responses';
+	 
+	 CREATE EXTERNAL TABLE IF NOT EXISTS readmissionsNat                                                                        
+     (measureName string,                                                                                                                
+     measureId int,                                                                                                            
+     nationalRate float,                                                                                                                 
+     worseNum int,                                                                                                                    
+     sameNum int,                                                                                                                   
+     betterNum int,                                                                                                                    
+     fewNum int,                                                                                                              
+     footnote string,                                                                                                             
+     measureStartDate date,                                                                                                               
+     measureEndDate date)                                                                                                            
+     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
+     WITH SERDEPROPERTIES(
+     "separatorChar"=",",
+     "quoteChar"="'",
+     "escapeChar"="\\")
+     STORED AS TEXTFILE                                                                                                              
+     LOCATION '/user/w205/hospital_compare/readmissionsNat';
+	 
+	 CREATE EXTERNAL TABLE IF NOT EXISTS effective_careNat                                                                        
+     (category string,
+	 condition string,
+	 footnote string,
+     measureId string,                                                                                                               
+     measureName string,                                                                                                             
+     nationalScore int,
+     measureStartDate date,
+     measureEndDate date)                                                                                                            
+     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
+     WITH SERDEPROPERTIES(
+     "separatorChar"=",",
+     "quoteChar"="'",
+     "escapeChar"="\\")
+     STORED AS TEXTFILE                                                                                                              
+     LOCATION '/user/w205/hospital_compare/effective_careNat';
 	    
