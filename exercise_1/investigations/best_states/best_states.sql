@@ -39,6 +39,7 @@ ORDER BY stateResult DESC;
 CREATE TABLE best_states AS
 SELECT *
 FROM stateResults
+ORDER BY stateResult DESC
 LIMIT 10;
 
-SELECT * FROM best_states;
+SELECT * FROM best_states ORDER BY stateResult DESC;

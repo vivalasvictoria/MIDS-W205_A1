@@ -1,5 +1,5 @@
 --Victoria Baker
---The following code transforms the data from the .csv file tables into a model as outlined
+--The following code calculates the variance of the care scores by measure and by hospital.
 
 --these are the tables getting created in this script, 
 --if they already exist in this context, delete them
@@ -53,8 +53,9 @@ LIMIT 10;
 CREATE TABLE measure_variability AS
 SELECT *
 FROM measureVarResults
+ORDER BY scoreVar DESC
 LIMIT 10;
 
 --Since the question is asking for variability of procedures across hospitals, 
 --measureVarResults is the table needed to provide the answer
-SELECT * FROM measure_variability;
+SELECT * FROM measure_variability ORDER BY scoreVar DESC;

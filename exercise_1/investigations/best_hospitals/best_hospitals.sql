@@ -61,6 +61,7 @@ ORDER BY
 CREATE TABLE best_hospitals AS
 SELECT *
 FROM hospitalResults
+ORDER BY totalScore DESC
 LIMIT 10;
 
-SELECT * FROM best_hospitals;
+SELECT * FROM best_hospitals ORDER BY totalScore DESC;

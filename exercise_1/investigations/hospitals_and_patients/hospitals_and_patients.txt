@@ -1,0 +1,46 @@
+The surveyResults are compared to the best_hospitals and the hospital variability, below:
+
+best_hospitals & survey results
+
+Provider Hospital Name			Num	Denom	Percentage		Rank
+Id										Score
+330202  KINGS COUNTY HOSPITAL CENTER    0.0     232     0.0     		3360
+450289  HARRIS HEALTH SYSTEM    	18.0    232     0.07758620689655173     3330
+220100  SOUTH SHORE HOSPITAL    	112.0   232     0.4827586206896552      3300
+050040  LAC/OLIVE VIEW-UCLA 
+	MEDICAL CENTER      		34.0    232     0.14655172413793102     3273
+010087  UNIVERSITY OF SOUTH ALABAMA 
+	MEDICAL CENTER      		64.0    232     0.27586206896551724     3271
+260048  TRUMAN MEDICAL CENTER 
+	HOSPITAL HILL     		45.0    232     0.1939655172413793      3257
+050292  RIVERSIDE COUNTY REGIONAL 
+	MEDICAL CENTER        		10.0    232     0.04310344827586207     3251
+330182  ST FRANCIS HOSPITAL, ROSLYN     105.0   232     0.4525862068965517      3233
+330306  LUTHERAN MEDICAL CENTER 	8.0     232     0.034482758620689655    3223
+450213  UNIVERSITY HEALTH SYSTEM        26.0    232     0.11206896551724138     3201
+
+hospital variability & survey results
+
+Provider
+Id	 Hospital Name				Num	Denom	Percentage		Variance
+450348  FALLS COMMUNITY HOSPITAL AND CLINIC     180.0   232     0.7758620689655172      54062.935264825705
+310002  NEWARK BETH ISRAEL MEDICAL CENTER       0.0     232     0.0     		33771.234042553195
+400079	HOSP COMUNITARIO BUEN SAMARITANO        NULL    NULL    NULL    		32125.162448979594
+330202  KINGS COUNTY HOSPITAL CENTER    	0.0     232     0.0     		21890.674513354457
+050060  COMMUNITY REGIONAL MEDICAL CENTER       32.0    232     0.13793103448275862     16431.71208691716
+400032	HOSPITAL HERMANOS MELENDEZ INC  	NULL    NULL    NULL    		14713.815510204082
+450289  HARRIS HEALTH SYSTEM    		18.0    232     0.07758620689655173     13691.185151652331
+330141  BROOKHAVEN MEMORIAL HOSPITAL MEDICAL 
+	CENTER     				14.0    232     0.0603448275862069      13560.632865550022
+050315  KERN MEDICAL CENTER     		36.0    232     0.15517241379310345     13165.616115889541
+330306  LUTHERAN MEDICAL CENTER 		8.0     232     0.034482758620689655    13127.592575826164
+
+There isn't any clear correlation according to these rankings. If the surveyResults were correlated
+with the best hospitals, it would be most likely that hospitals with better rankings would also have better
+survey scores. This does not appear to be the case. Similarly, we might expect that high procedure variability
+might yield poor survey score results, but there is no consistency when comparing restuls.
+When looking at the ordered surveyResults table created in the hospitals_and_patients.sql file, it 
+further supports this since there are many far greater and far smaller values than are shown in the results
+above. While that wouldn't alone rule out the possibility of correlation, it does support the argument
+that there isn't detectable correlation between survey responses and hospital quality or procedural
+variability in this dataset.
