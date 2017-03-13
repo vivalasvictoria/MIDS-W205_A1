@@ -1,0 +1,24 @@
+The following procedures have the greatest variability across hospitals:
+
+Measure	Measure Name						Score Variance
+Id								
+ED_1b   Median Time from ED Arrival to ED Departure for 
+	Admitted ED Patients    				20147.57397597306
+ED_2b   Admit Decision Time to ED Departure Time for Admitted 
+	Patients  						4717.521853660723
+OP_18b  Median Time from ED Arrival to ED Departure for 
+	Discharged ED Patients  				4427.249502539033
+AMI_2   Aspirin Prescribed at Discharge 			2433.883395801229
+VTE_4   Venous Thromboembolism Patients Receiving 
+	Unfractionated Heparin with Dosages/Platelet Count 
+	Monitoring by Protocol or Nomogram       		2418.4058730337965
+AMI_10  Statin Prescribed at Discharge  			2387.301744930978
+STK_2   Discharged on Antithrombotic Therapy    		2385.8219390547342
+STK_5   Antithrombotic Therapy By End of Hospital Day 2 	2353.06528305494
+OP_4    Aspirin at Arrival      				2345.033217061381
+STK_10  Assessed for Rehabilitation     			2320.3779352806287
+
+The score variance was used to determine which procedures had the greatest variability. This was calculated
+using the population variance of the care dimension scores for each measure. The results were ordered
+by variance across all measures. This method is a consistent and straightforward way to measure variance
+that isn't as drastically affected by extreme values (such as range calculations, for example). 

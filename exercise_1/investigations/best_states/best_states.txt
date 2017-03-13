@@ -1,0 +1,21 @@
+The following states are the top ten models of high quality care:
+
+State	Total	Hospital	Hospital
+	Score	Count		Average Score
+NJ      171915  65      	2644.846153846154
+DE      18449   7       	2635.5714285714284
+CT      75684   31      	2441.4193548387098
+RI      29027   12      	2418.9166666666665
+DC      21533   9       	2392.5555555555557
+MA      154093  65      	2370.6615384615384
+FL      435837  186     	2343.2096774193546
+NY      419028  179     	2340.9385474860337
+CA      792828  343     	2311.451895043732
+MD      105490  46      	2293.2608695652175
+
+The score used to determine which states were the best models of high quality care is made up of 
+an average hospital score ranking which accounts for both care and readmissions measures. 
+Each measure is assigned a ranking based on all of the scores. The rankings are then summed for each 
+state and divided by the hospital count for that state. This approach incorporates the variety of 
+procedures as well as the greatness of the scores. It doesn't necessarily favor either more than the other.
+The best states have the highest average hospital scores. 

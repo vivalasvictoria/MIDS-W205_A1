@@ -1,16 +1,24 @@
+--Victoria Baker
+--The following code loads the data from the csv files into tables. All columns are included.
+
+--these are the tables getting created in this script, 
+--if they already exist in this context, delete them
 DROP TABLE IF EXISTS effective_care;
 DROP TABLE IF EXISTS hospital;
 DROP TABLE IF EXISTS measures;
 DROP TABLE IF EXISTS readmissions;
 DROP TABLE IF EXISTS responses;
+DROP TABLE IF EXISTS readmissionsNat;
+DROP TABLE IF EXISTS effective_careNat;
 
+--Create tables for each file loaded into hdfs
 CREATE EXTERNAL TABLE IF NOT EXISTS effective_care                                                                        
      (providerId string,                                                                                                                
      hospitalName string,                                                                                                            
      address string,                                                                                                                 
      city string,                                                                                                                    
      state string,                                                                                                                   
-     zipcode int,                                                                                                                    
+     zipcode string,                                                                                                                    
      countyName string,                                                                                                              
      phoneNumber string,                                                                                                             
      condition string,                                                                                                               
@@ -23,11 +31,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS effective_care
      measureEndDate date)                                                                                                            
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/effective_care';
+     LOCATION '/user/root/hospital_compare/effective_care';
 
 
 CREATE EXTERNAL TABLE IF NOT EXISTS hospital
@@ -38,20 +46,20 @@ CREATE EXTERNAL TABLE IF NOT EXISTS hospital
      state string,
      zipcode int,                                                                                                                    
      countyName string,
-     phoneNumber string,                                                                                                             
+     phoneNumber string,                                                                                                        
      hospitalType string,
      hospitalOwnership string,
      emergencyServices string)
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/hospital';      
+     LOCATION '/user/root/hospital_compare/hospital';      
 	
 CREATE EXTERNAL TABLE IF NOT EXISTS measures                                                                               
-     (measureNames string,                                                                                                           
+     (measureName string,                                                                                                           
      measureId string,
      measureStartQuarter string,
      measureStartDate date,
@@ -59,11 +67,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS measures
      measureEndDate date)
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/measures';
+     LOCATION '/user/root/hospital_compare/measures';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS readmissions                                                                          
      (providerId string,
@@ -71,7 +79,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS readmissions
      address string,
      city string,
      state string,
-     zipcode int,
+     zipcode string,
      countyName string,
      phoneNumber string,                                                                                                             
      measureName string,
@@ -86,11 +94,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS readmissions
      measureEndDate date)
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/readmissions';
+     LOCATION '/user/root/hospital_compare/readmissions';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS responses
      (providerNumber string,
@@ -98,7 +106,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS responses
      address string,                                                                                                                 
      city string,
      state string,
-     zipcode int,
+     zipcode string,
      countyName string,
      commNursesAchievement string,                                                                                                   
      commNursesImprovement string,
@@ -128,15 +136,15 @@ CREATE EXTERNAL TABLE IF NOT EXISTS responses
      hcahpsConsistencyScore string)                                                                                                  
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/responses';
+     LOCATION '/user/root/hospital_compare/responses';
 	 
 	 CREATE EXTERNAL TABLE IF NOT EXISTS readmissionsNat                                                                        
      (measureName string,                                                                                                                
-     measureId int,                                                                                                            
+     measureId string,                                                                                                            
      nationalRate float,                                                                                                                 
      worseNum int,                                                                                                                    
      sameNum int,                                                                                                                   
@@ -147,11 +155,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS responses
      measureEndDate date)                                                                                                            
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/readmissionsNat';
+     LOCATION '/user/root/hospital_compare/readmissionsNat';
 	 
 	 CREATE EXTERNAL TABLE IF NOT EXISTS effective_careNat                                                                        
      (category string,
@@ -164,9 +172,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS responses
      measureEndDate date)                                                                                                            
      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'                                                                   
      WITH SERDEPROPERTIES(
-     "separatorChar"=",",
-     "quoteChar"="'",
-     "escapeChar"="\\")
+     'separatorChar'=',',
+     'quoteChar'='\"',
+     'escapeChar'='\\')
      STORED AS TEXTFILE                                                                                                              
-     LOCATION '/user/w205/hospital_compare/effective_careNat';
+     LOCATION '/user/root/hospital_compare/effective_careNat';
 	    

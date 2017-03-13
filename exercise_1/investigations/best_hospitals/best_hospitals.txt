@@ -1,0 +1,20 @@
+The following hospitals are models of high quality care:
+
+Provider
+Id	Hospital Name					Score
+330202  KINGS COUNTY HOSPITAL CENTER    		3360
+450289  HARRIS HEALTH SYSTEM    			3330
+220100  SOUTH SHORE HOSPITAL    			3300
+050040  LAC/OLIVE VIEW-UCLA MEDICAL CENTER      	3273
+010087  UNIVERSITY OF SOUTH ALABAMA MEDICAL CENTER      3271
+260048  TRUMAN MEDICAL CENTER HOSPITAL HILL     	3257
+050292  RIVERSIDE COUNTY REGIONAL MEDICAL CENTER        3251
+330182  ST FRANCIS HOSPITAL, ROSLYN     		3233
+330306  LUTHERAN MEDICAL CENTER 			3223
+450213  UNIVERSITY HEALTH SYSTEM        		3201
+
+The score used to determine which hospitals were the best models of high quality care is made up of 
+the sum of score rankings for both care and readmissions measures. Each measure is assigned a ranking
+based on all of the scores. The rankings are then summed for each hospital. This approach 
+incorporates the variety of procedures as well as the greatness of the scores. It doesn't necessarily favor
+either more than the other. 
